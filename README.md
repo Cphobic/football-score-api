@@ -1,1 +1,1 @@
-# football-score-api
+Football league Companion
