@@ -44,17 +44,20 @@ def get_info_api(url):
 
 
 def competitions(competition_id='2021'):
-    url = URL + f'competitions/{competition_id}/standings'
+    url = URL + f'competitions/{competition_id}/matches?matchday=10'
+    # url = URL + f'competitions/'
     resp = get_info_api(url)
+    print(type(resp))
+    print_in_file(resp, 'matchday')
 
 
 def teams(id='64'):  # liverpool team id = 64
 
-    upcoming_matches = f'{URL}/teams/{id}/matches?status=SCHEDULED'
-    all_matches_of_one_team = f'{URL}/teams/{id}/matches/'
+    upcoming_matches = f'{URL}/teams/{id}/matches?status=FINISHED'
+    # all_matches_of_one_team = f'{URL}/teams/{id}'
 
-    resp = get_info_api(all_matches_of_one_team)
-    print_in_file(resp, file_name='all_matches_of_one_team')
+    resp = get_info_api(upcoming_matches)
+    print_in_file(resp, file_name='teams')
 
 
 def matches():  # liv vs someone
@@ -65,4 +68,13 @@ def matches():  # liv vs someone
         resp = get_info_api(one_match)
         print_in_file(resp, file_name='one_match')
 
-    re = one_match
+    one_match()
+
+
+def player_info():
+    url = URL + f'players/44'
+    resp = get_info_api(url)
+    print_in_file(resp, file_name='player')
+
+
+teams()
